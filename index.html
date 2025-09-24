@@ -1,0 +1,1107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xiaoling Cui - Software Engineer</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.7;
+        color: #34495e;
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 25%, #7f8c8d 50%, #95a5a6 100%);
+        min-height: 100vh;
+        font-size: 16px;
+        transition:
+          background 0.4s ease,
+          color 0.4s ease;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        position: relative;
+      }
+
+      /* Dark mode */
+      body.dark {
+        background: linear-gradient(135deg, #0f172a 0%, #2c3e50 25%, #2c3e50 50%, #34495e 100%);
+        color: #ecf0f1;
+      }
+
+      /* Background pattern overlay */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          radial-gradient(circle at 20% 50%, rgba(148, 163, 184, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(203, 213, 225, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 40% 80%, rgba(100, 116, 139, 0.12) 0%, transparent 50%),
+          radial-gradient(circle at 60% 60%, rgba(71, 85, 105, 0.08) 0%, transparent 40%);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      body.dark::before {
+        background-image:
+          radial-gradient(circle at 20% 50%, rgba(71, 85, 105, 0.2) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(100, 116, 139, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 40% 80%, rgba(148, 163, 184, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 60% 60%, rgba(30, 41, 59, 0.25) 0%, transparent 40%);
+      }
+
+      /* Nav section */
+      .nav-section {
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        z-index: 1000;
+        padding: 1rem 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        margin: 1rem 0 2rem 0;
+        transition: all 0.3s ease;
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.1),
+          0 0 0 1px rgba(255, 255, 255, 0.2);
+      }
+      body.dark .nav-section {
+        background: rgba(15, 23, 42, 0.95);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.3),
+          0 0 0 1px rgba(148, 163, 184, 0.1);
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .nav-link {
+        color: #7f8c8d;
+        text-decoration: none;
+        font-size: 0.95rem;
+        cursor: pointer;
+        position: relative;
+        padding: 8px 16px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        background: transparent;
+      }
+
+      .nav-link:hover {
+        background: rgba(100, 116, 139, 0.15);
+        color: #2c3e50;
+        transform: translateY(-2px);
+      }
+
+      .nav-link.active {
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+        color: white;
+        box-shadow: 0 4px 15px rgba(44, 62, 80, 0.4);
+      }
+
+      /* Dark mode nav links */
+      body.dark .nav-link {
+        color: #bdc3c7;
+      }
+      body.dark .nav-link:hover {
+        background: rgba(203, 213, 225, 0.1);
+        color: #ecf0f1;
+      }
+      body.dark .nav-link.active {
+        background: linear-gradient(135deg, #34495e, #2c3e50);
+        color: white;
+        box-shadow: 0 4px 15px rgba(52, 73, 94, 0.4);
+      }
+
+      /* Sections (hidden by default) */
+      .section {
+        display: none;
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.1),
+          0 0 0 1px rgba(255, 255, 255, 0.2);
+        padding: 3rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .section.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        animation: slideInUp 0.6s ease;
+      }
+      body.dark .section {
+        background: rgba(15, 23, 42, 0.95);
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.3),
+          0 0 0 1px rgba(148, 163, 184, 0.1);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Intro section (About Me layout) */
+      .intro-section {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .sidebar {
+        flex: 1;
+        max-width: 350px;
+        text-align: center;
+      }
+
+      .profile-header img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin-bottom: 1.5rem;
+        object-fit: cover;
+        border: 4px solid rgba(255, 255, 255, 0.9);
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.15),
+          0 0 0 8px rgba(79, 70, 229, 0.1);
+        transition: all 0.4s ease;
+        position: relative;
+      }
+
+      .profile-header img:hover {
+        transform: scale(1.05) rotate(2deg);
+        box-shadow:
+          0 25px 50px rgba(0, 0, 0, 0.2),
+          0 0 0 8px rgba(79, 70, 229, 0.2);
+      }
+
+      body.dark .profile-header img {
+        border: 4px solid rgba(15, 23, 42, 0.9);
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.3),
+          0 0 0 8px rgba(99, 102, 241, 0.15);
+      }
+
+      body.dark .profile-header img:hover {
+        box-shadow:
+          0 25px 50px rgba(0, 0, 0, 0.4),
+          0 0 0 8px rgba(99, 102, 241, 0.25);
+      }
+
+      .profile-header h1 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #2c3e50, #34495e, #7f8c8d);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+        animation: fadeInUp 0.8s ease 0.2s both;
+      }
+      body.dark .profile-header h1 {
+        background: linear-gradient(135deg, #ecf0f1, #bdc3c7, #95a5a6);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .position {
+        font-size: 1.1rem;
+        font-weight: 600;
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1.5rem;
+        animation: fadeInUp 0.8s ease 0.4s both;
+      }
+
+      body.dark .position {
+        background: linear-gradient(135deg, #bdc3c7, #7f8c8d);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+        color: #7f8c8d;
+        margin-bottom: 2rem;
+        font-weight: 500;
+        animation: fadeInUp 0.8s ease 0.6s both;
+      }
+      body.dark .subtitle {
+        color: #bdc3c7;
+      }
+
+      /* Social icons */
+      .social-icons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-top: 2rem;
+        animation: fadeInUp 0.8s ease 0.8s both;
+      }
+
+      .social-icons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+      .social-icons a:hover {
+        transform: translateY(-3px) scale(1.1);
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+        box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+      }
+      .social-icons a:hover svg {
+        fill: white;
+      }
+      body.dark .social-icons a {
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+      body.dark .social-icons a:hover {
+        background: linear-gradient(135deg, #34495e, #2c3e50);
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+      }
+
+      .social-icons svg {
+        width: 22px;
+        height: 22px;
+        fill: #34495e;
+        transition: all 0.3s ease;
+      }
+      body.dark .social-icons svg {
+        fill: #bdc3c7;
+      }
+
+      .about {
+        flex: 2;
+        animation: fadeInUp 0.8s ease 0.3s both;
+      }
+
+      .about h2 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+
+      body.dark .about h2 {
+        background: linear-gradient(135deg, #bdc3c7, #95a5a6);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .about p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        color: #34495e;
+        font-weight: 400;
+      }
+
+      body.dark .about p {
+        color: #bdc3c7;
+      }
+
+      /* Enhanced section headings */
+      h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+        border-radius: 2px;
+      }
+
+      body.dark h2 {
+        background: linear-gradient(135deg, #bdc3c7, #95a5a6);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      body.dark h2::after {
+        background: linear-gradient(135deg, #bdc3c7, #95a5a6);
+      }
+
+      /* Floating animation for profile image */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .profile-header img {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @media (max-width: 768px) {
+        .intro-section {
+          flex-direction: column;
+        }
+        .sidebar {
+          max-width: 100%;
+        }
+        .profile-header img {
+          width: 160px;
+          height: 160px;
+        }
+        .profile-header h1 {
+          font-size: 1.875rem;
+        }
+        .about h2 {
+          font-size: 2rem;
+        }
+      }
+
+      /* Skill bars */
+      .skill-bar {
+        margin: 1rem 0;
+      }
+      .skill-bar span {
+        display: block;
+        margin-bottom: 0.3rem;
+        font-weight: 500;
+      }
+      .skill-bar .bar {
+        background: #bdc3c7;
+        border-radius: 8px;
+        overflow: hidden;
+        height: 10px;
+      }
+      .skill-bar .progress {
+        background: #34495e;
+        height: 10px;
+        border-radius: 8px;
+        transition: width 0.5s ease;
+      }
+      body.dark .skill-bar .bar {
+        background: #2c3e50;
+      }
+      body.dark .skill-bar .progress {
+        background: #7f8c8d;
+      }
+
+      /* Project cards */
+      .project-item {
+        background: #ecf0f1;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .project-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+      body.dark .project-item {
+        background: #2c3e50;
+      }
+
+      /* Dark mode toggle */
+      .dark-toggle {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        padding: 0.75rem 1.5rem;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        color: #2c3e50;
+        border: 2px solid rgba(44, 62, 80, 0.2);
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+
+      .dark-toggle:hover {
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(44, 62, 80, 0.4);
+      }
+
+      body.dark .dark-toggle {
+        background: rgba(26, 26, 26, 0.9);
+        color: #bdc3c7;
+        border-color: rgba(127, 140, 141, 0.3);
+      }
+
+      body.dark .dark-toggle:hover {
+        background: linear-gradient(135deg, #34495e, #2c3e50);
+        color: white;
+        box-shadow: 0 8px 25px rgba(52, 73, 94, 0.4);
+      }
+
+      .resume-btn {
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+        color: white;
+        box-shadow: 0 4px 15px rgba(44, 62, 80, 0.4);
+        border: none;
+        font-weight: 600;
+        padding: 0.75rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+      }
+
+      .resume-btn:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(44, 62, 80, 0.6);
+      }
+
+      body.dark .resume-btn {
+        background: linear-gradient(135deg, #34495e, #2c3e50);
+        box-shadow: 0 4px 15px rgba(52, 73, 94, 0.4);
+      }
+
+      body.dark .resume-btn:hover {
+        box-shadow: 0 8px 25px rgba(52, 73, 94, 0.6);
+      }
+
+      /* Skills section styling */
+      .skill-category {
+        background: #ecf0f1;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .skill-category:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+      body.dark .skill-category {
+        background: #2c3e50;
+      }
+
+      /* Experience and Education items */
+      .experience-item,
+      .education-item {
+        background: #ecf0f1;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .experience-item:hover,
+      .education-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .project-item .item-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: #2c3e50;
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+        letter-spacing: -0.02em;
+        font-family: "Inter", sans-serif;
+      }
+
+      .project-item .item-subtitle {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #34495e;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.9rem;
+      }
+
+      .project-item .item-date {
+        font-size: 0.85rem;
+        color: #7f8c8d;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+        font-style: italic;
+        letter-spacing: 0.02em;
+      }
+
+      .project-item .tech-stack {
+        font-size: 0.95rem;
+        color: #34495e;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+        line-height: 1.7;
+        font-family: "Inter", sans-serif;
+        font-style: italic;
+      }
+
+      .experience-item .item-title,
+      .education-item .item-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+      }
+
+      .experience-item .item-subtitle,
+      .education-item .item-subtitle {
+        font-size: 1.1rem;
+        color: #34495e;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .experience-item .item-date,
+      .education-item .item-date {
+        color: #7f8c8d;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+      }
+
+      .experience-item ul,
+      .education-item ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .experience-item li,
+      .education-item li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.8rem;
+        color: #34495e;
+        line-height: 1.7;
+      }
+
+      .experience-item li::before,
+      .education-item li::before {
+        content: "▶";
+        position: absolute;
+        left: 0;
+        color: #34495e;
+        font-size: 0.8rem;
+      }
+
+      /* Additional info styling */
+      .additional-info {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .additional-info p {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin: 0;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .additional-info p:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .additional-info strong {
+        color: #34495e;
+        font-weight: 700;
+      }
+
+      /* Dark mode for new elements */
+      body.dark .experience-item,
+      body.dark .education-item {
+        background: #2c3e50;
+      }
+
+      body.dark .project-item .item-title {
+        color: #ecf0f1;
+      }
+
+      body.dark .project-item .item-subtitle {
+        color: #bdc3c7;
+      }
+
+      body.dark .project-item .item-date {
+        color: #95a5a6;
+      }
+
+      body.dark .project-item .tech-stack {
+        color: #bdc3c7;
+      }
+
+      body.dark .experience-item .item-title,
+      body.dark .education-item .item-title {
+        color: #ecf0f1;
+      }
+
+      body.dark .experience-item .item-subtitle,
+      body.dark .education-item .item-subtitle {
+        color: #bdc3c7;
+      }
+
+      body.dark .experience-item .item-date,
+      body.dark .education-item .item-date {
+        color: #95a5a6;
+      }
+
+      body.dark .experience-item li,
+      body.dark .education-item li {
+        color: #bdc3c7;
+      }
+
+      body.dark .experience-item li::before,
+      body.dark .education-item li::before {
+        color: #34495e;
+      }
+
+      body.dark .additional-info p {
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      body.dark .additional-info strong {
+        color: #bdc3c7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Dark mode toggle -->
+      <button class="dark-toggle">🌙 Dark Mode</button>
+
+      <!-- Navigation -->
+      <nav class="nav-section">
+        <div class="nav-links">
+          <a href="#Xiaoling Cui" class="nav-link active">Xiaoling Cui</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#experience" class="nav-link">Experience</a>
+          <a href="#education" class="nav-link">Education</a>
+          <a href="#additional" class="nav-link">Additional</a>
+        </div>
+      </nav>
+
+      <!-- Intro Section -->
+      <section id="Xiaoling Cui" class="section active">
+        <div class="intro-section">
+          <aside class="sidebar">
+            <img src="your-photo.jpg" alt="Profile Photo" />
+            <h1>Xiaoling Cui</h1>
+            <p class="position">Software Engineer</p>
+            <p class="subtitle">Career Switcher | Data & Tech Enthusiast</p>
+
+            <div class="social-icons">
+              <a href="mailto:xiaolingcui0111@gmail.com" aria-label="Email">
+                <!-- Email SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path
+                    d="M20 4H4c-1.1 0-2 .9-2 2v12c0 
+              1.1.9 2 2 2h16c1.1 0 2-.9 
+              2-2V6c0-1.1-.9-2-2-2zm0 
+              4l-8 5-8-5V6l8 5 8-5v2z"
+                  />
+                </svg>
+              </a>
+              <!-- Phone -->
+              <a href="tel:+61493729321" aria-label="Phone">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path
+                    d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 
+             1 0 011.05-.24c1.12.37 2.33.57 3.54.57.55 
+             0 1 .45 1 1v3.5c0 .55-.45 1-1 
+             1C10.07 21 3 13.93 3 
+             5c0-.55.45-1 1-1h3.5c.55 
+             0 1 .45 1 1 0 1.21.2 2.42.57 
+             3.54.09.35.02.73-.24 
+             1.05l-2.21 2.2z"
+                  />
+                </svg>
+              </a>
+
+              <a href="https://www.linkedin.com/in/xiaoling-cui-9b504a350/" target="_blank" aria-label="LinkedIn">
+                <!-- LinkedIn SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 
+              0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 
+              1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 
+              4.267 5.455v6.286zM5.337 7.433a2.062 
+              2.062 0 01-2.063-2.065 2.064 
+              2.064 0 112.063 2.065zm1.782 
+              13.019H3.555V9h3.564v11.452zM22.225 
+              0H1.771C.792 0 0 .774 0 1.729v20.542C0 
+              23.227.792 24 1.771 24h20.451C23.2 24 
+              24 23.227 24 22.271V1.729C24 .774 
+              23.2 0 22.222 0h.003z"
+                  />
+                </svg>
+              </a>
+              <a href="https://github.com/xl-c111" target="_blank" aria-label="GitHub">
+                <!-- GitHub SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.373 0 
+              12c0 5.302 3.438 9.8 8.207 
+              11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 
+              1.205.084 1.839 1.237 1.839 
+              1.237 1.07 1.834 2.807 
+              1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 
+              0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 
+              0 0 1.008-.322 3.301 
+              1.23.957-.266 1.983-.399 
+              3.003-.404 1.02.005 2.047.138 
+              3.006.404 2.291-1.552 
+              3.297-1.23 3.297-1.23.653 
+              1.653.242 2.874.118 3.176.77.84 
+              1.235 1.911 1.235 
+              3.221 0 4.609-2.807 5.624-5.479 
+              5.921.43.372.823 1.102.823 
+              2.222v3.293c0 .319.192.694.801.576C20.563 
+              21.8 24 17.302 24 12c0-6.627-5.373-12-12-12z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </aside>
+
+          <div class="about">
+            <h2>Hi!</h2>
+            <p>
+              I am a career switcher with three years of experience in data-driven business analytics, now building a
+              career in software engineering. At Holberton School, I developed full-stack applications and system-level
+              projects using Python, JavaScript, and C, with experience in React, Node.js, REST APIs, CI/CD workflows,
+              and Docker.
+            </p>
+            <p>
+              I thrive in agile, collaborative teams and bring strong problem-solving and communication skills that
+              support both technical and business outcomes. I enjoy exploring new technologies, improving performance
+              and scalability, and delivering secure, user-focused solutions. I am motivated by opportunities to
+              contribute to impactful software that empowers users and drives business growth.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+
+      <section id="skills" class="section">
+        <h2>Skills & Competencies</h2>
+        <div class="skills-list">
+          <div class="skill-category">
+            <strong>Programming Languages:</strong> Proficient in TypeScript, JavaScript (ES6+), Python, and C, with
+            experience building full-stack applications and RESTful APIs.
+          </div>
+          <div class="skill-category">
+            <strong>Web Development:</strong> Skilled in React, TypeScript, HTML/CSS, responsive design, and API
+            integration, with experience applying testing frameworks including Jest and React Testing Library.
+          </div>
+          <div class="skill-category">
+            <strong>DevOps & Tools:</strong> GitHub, Docker, environment setup, CI/CD workflows.
+          </div>
+          <div class="skill-category">
+            <strong>Data & Visualization:</strong> Skilled in using structured/unstructured data to generate insights.
+          </div>
+          <div class="skill-category">
+            <strong>Collaboration & Agile:</strong> Empathetic team player; experienced in agile sprints, pair
+            programming, and code reviews, with a focus on open communication and knowledge sharing.
+          </div>
+          <div class="skill-category">
+            <strong>Problem Solving & Growth Mindset:</strong> Curious and adaptable; embrace challenges with a growth
+            mindset, apply feedback to improve, and leverage AI tools as a creative partner.
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <h2>Projects</h2>
+
+        <div class="project-item">
+          <div class="item-title">AI-Powered Post-Surgery Care Assistant</div>
+          <div class="item-subtitle">Full Stack Software Engineer</div>
+          <div class="item-date">July 2025</div>
+          <div class="tech-stack">
+            Flask-based intelligent assistant for post-surgery care using Python, JavaScript, HTML, Tailwind CSS, REST
+            APIs, Docker, Git
+          </div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Developed a full-stack web application integrating external APIs, enabling automated process workflows,
+                real-time data streaming, and interactive Q&A features
+              </li>
+              <li>Built file upload and live data processing workflows supporting multiple input types</li>
+              <li>
+                Integrated AI-driven responses through REST APIs, delivering structured outputs and dynamic user
+                interactions
+              </li>
+              <li>
+                Designed a responsive UI with React.js and Tailwind CSS, featuring drag-and-drop, progress tracking, and
+                interactive cards
+              </li>
+              <li>Wrote unit, integration, and end-to-end tests to ensure reliability and scalability</li>
+            </ul>
+            <a
+              href="https://github.com/xl-c111/heidi_AI_integration_project"
+              target="_blank"
+              class="github-project-link"
+            >
+              <span class="github-icon"></span>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="item-title">Holbertonschool-HBnB: Full-Stack Web Application</div>
+          <div class="item-subtitle">Full Stack Software Engineer</div>
+          <div class="item-date">May 2025 – August 2025</div>
+          <div class="tech-stack">
+            Holberton School Project | Python, Flask, SQLAlchemy, JavaScript, MySQL, HTML, CSS
+          </div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Developed a RESTful API using Flask and SQLAlchemy with a modular architecture and ORM-based data
+                handling
+              </li>
+              <li>Built interactive front-end interfaces using HTML/CSS and JavaScript (ES6)</li>
+              <li>Designed a MySQL database with normalized schemas and proper relational integrity</li>
+              <li>Documented system architecture with UML/ER diagrams to support team development</li>
+              <li>Applied TDD and Git-based version control in an agile, collaborative workflow</li>
+            </ul>
+            <a href="https://github.com/xl-c111/holbertonschool-hbnb" target="_blank" class="github-project-link">
+              <span class="github-icon"></span>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="section">
+        <h2>Work Experience</h2>
+
+        <div class="experience-item">
+          <div class="item-title">Business Analyst</div>
+          <div class="item-subtitle">Taiyuan Heavy Machinery Group Co., Ltd. | Taiyuan, China</div>
+          <div class="item-date">August 2016 – December 2018</div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Collaborated with cross-functional teams and international clients to gather and define business
+                requirements and developed BI solutions using SQL, Excel, and Tableau
+              </li>
+              <li>
+                Extracted and analyzed large-scale datasets to uncover actionable insights and craft clear, compelling
+                narratives for internal stakeholders
+              </li>
+              <li>
+                Conducted customer survey analysis using a mix of analytical techniques to inform both operational
+                improvements and strategic decisions
+              </li>
+              <li>
+                Led the development of manual and automated reporting tools using Excel and Tableau, improving reporting
+                efficiency and accuracy
+              </li>
+              <li>
+                Delivered training sessions to empower end-users to adopt data visualization and self-service analytics
+                tools, fostering a data-informed culture
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="section">
+        <h2>Education</h2>
+
+        <div class="education-item">
+          <div class="item-title">Software Engineering</div>
+          <div class="item-subtitle">Holberton School Australia | Melbourne, Australia</div>
+          <div class="item-date">February 2025 – present</div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Engaged in an intensive, full-time software engineering program, which emphasizes collaborative and
+                hands-on learning experiences
+              </li>
+              <li>
+                Developed real-world applications using Python, C, JavaScript, SQL, and React, enhancing practical
+                coding skills
+              </li>
+              <li>
+                Acquired industry-aligned expertise in Full-Stack Web Development, Software Engineering Principles, and
+                Test-Driven Development, helping to ensure robust software creation
+              </li>
+              <li>
+                Gained proficiency in CI/CD workflows and version control with GitHub, contributing to efficient
+                collaborative development
+              </li>
+              <li>
+                Studied Data Structures & Algorithms, including performance analysis, which bolstered problem-solving
+                capabilities
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="education-item">
+          <div class="item-title">Exchange Student - German</div>
+          <div class="item-subtitle">TU Bergakademie Freiberg | Freiberg, Germany</div>
+          <div class="item-date">September 2014 – September 2015</div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Developed strong adaptability and intercultural communication skills through one year study in Germany
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="education-item">
+          <div class="item-title">Bachelor of Arts - German</div>
+          <div class="item-subtitle">Northwestern Polytechnical University | Xi'an, China</div>
+          <div class="item-date">September 2011 – July 2016</div>
+          <div class="item-description">
+            <ul>
+              <li>
+                Completed foundational coursework in computer science (Computer Engineering, Visual Basic Programming)
+              </li>
+              <li>Awarded University Scholarship for academic excellence (2012, 2013)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="additional" class="section">
+        <h2>Additional Information</h2>
+        <div class="additional-info">
+          <p><strong>Languages:</strong> English, Mandarin, German</p>
+          <p><strong>Visa:</strong> Australian Permanent Resident</p>
+          <p><strong>Location:</strong> Based in Melbourne and open to hybrid roles</p>
+        </div>
+      </section>
+
+      <script>
+        // Page by page navigation
+        const navLinks = document.querySelectorAll(".nav-link");
+        const sections = document.querySelectorAll(".section");
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            navLinks.forEach((l) => l.classList.remove("active"));
+            this.classList.add("active");
+            sections.forEach((section) => section.classList.remove("active"));
+            const targetId = this.getAttribute("href").substring(1);
+            document.getElementById(targetId).classList.add("active");
+          });
+        });
+
+        // Dark mode toggle
+        const toggleBtn = document.querySelector(".dark-toggle");
+        toggleBtn.addEventListener("click", () => {
+          document.body.classList.toggle("dark");
+          toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
+        });
+      </script>
+    </div>
+  </body>
+</html>
