@@ -611,6 +611,14 @@ body.dark .project-item:hover {
   border-color: rgba(249, 115, 22, 0.3);
 }
 
+.tech-cicd {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(126, 58, 242, 0.15));
+  color: #5b21b6;
+  border-color: rgba(167, 139, 250, 0.3);
+}
+
+
+
 /* Dark mode tech badges */
 body.dark .tech-python {
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.2));
@@ -666,12 +674,18 @@ body.dark .tech-html {
   border-color: rgba(249, 115, 22, 0.4);
 }
 
+body.dark .tech-cicd {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.15), rgba(126, 58, 242, 0.2));
+  color: #ddd6fe;
+  border-color: rgba(167, 139, 250, 0.4);
+}
+
 /* Skills section styling */
 .skill-category {
   background: #ecf0f1;
   border-radius: 10px;
-  padding: 1.5rem;
-  margin: 1rem 0;
+  padding: 0.9rem 1.2rem;
+  margin: 0.5rem 0;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
@@ -703,8 +717,8 @@ body.dark .skill-category strong {
 
 /* Currently Learning Section */
 .currently-learning-section {
-  margin-top: 2.5rem;
-  padding-top: 2rem;
+  margin-top: 2.2rem;
+  padding-top: 1.5rem;
   border-top: 2px solid rgba(139, 92, 246, 0.2);
 }
 
@@ -928,16 +942,18 @@ body.dark .education-item:hover {
 }
 
 /* Additional info styling */
+
+
 .additional-info {
   display: grid;
-  gap: 1rem;
+  gap: 0.6rem;
 }
 
 .additional-info p {
   background: #ecf0f1;
   border-radius: 10px;
-  padding: 1.5rem;
-  margin: 1rem 0;
+  padding: 0.9rem 1.2rem;
+  margin: 0.3rem 0;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
