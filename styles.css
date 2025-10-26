@@ -563,6 +563,36 @@ body.dark .project-item:hover {
   border-color: rgba(59, 130, 246, 0.3);
 }
 
+.tech-typescript {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.12), rgba(59, 130, 246, 0.18));
+  color: #1d4ed8;
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+.tech-react {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.12), rgba(6, 182, 212, 0.18));
+  color: #155e75;
+  border-color: rgba(6, 182, 212, 0.35);
+}
+
+.tech-vite {
+  background: linear-gradient(135deg, rgba(192, 132, 252, 0.12), rgba(239, 68, 68, 0.14));
+  color: #7e22ce;
+  border-color: rgba(192, 132, 252, 0.35);
+}
+
+.tech-prisma {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), rgba(16, 185, 129, 0.18));
+  color: #065f46;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.tech-postgresql {
+  background: linear-gradient(135deg, rgba(129, 140, 248, 0.12), rgba(79, 70, 229, 0.18));
+  color: #312e81;
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
 .tech-javascript {
   background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.15));
   color: #b45309;
@@ -616,8 +646,6 @@ body.dark .project-item:hover {
   color: #5b21b6;
   border-color: rgba(167, 139, 250, 0.3);
 }
-
-
 
 /* Dark mode tech badges */
 body.dark .tech-python {
@@ -869,9 +897,29 @@ body.dark .education-item:hover {
   font-weight: 600;
   color: #34495e;
   margin-bottom: 0.5rem;
-  text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.9rem;
+  font-style: italic;
+}
+
+.project-item .project-summary {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-style: normal;
+  color: #2c3e50;
+  text-transform: none;
+}
+
+.project-item .project-role {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-style: italic;
+  color: #7f8c8d;
 }
 
 .project-item .item-date {
@@ -907,6 +955,7 @@ body.dark .education-item:hover {
   color: #34495e;
   font-weight: 600;
   margin-bottom: 0.5rem;
+  font-style: italic;
 }
 
 .experience-item .item-date,
@@ -942,7 +991,6 @@ body.dark .education-item:hover {
 }
 
 /* Additional info styling */
-
 
 .additional-info {
   display: grid;
@@ -992,6 +1040,14 @@ body.dark .project-item .item-title {
 
 body.dark .project-item .item-subtitle {
   color: #bdc3c7;
+}
+
+body.dark .project-item .project-summary {
+  color: #ecf0f1;
+}
+
+body.dark .project-item .project-role {
+  color: #c8d6e5;
 }
 
 body.dark .project-item .item-date {
