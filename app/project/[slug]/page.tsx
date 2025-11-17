@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ExternalLink, Github, Code2, Layers, Star, Box } from "lucide-react";
 import Image from "next/image";
+import { getImagePath } from "@/lib/utils-image";
 
 // Project data with detailed information
 const projects = {
@@ -131,7 +132,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <div className="lg:hidden mb-6 sm:mb-8">
           <div className="rounded-xl overflow-hidden border border-[#43766C]/30">
             <Image
-              src={project.image}
+              src={getImagePath(project.image)}
               alt={project.title}
               width={1200}
               height={800}
@@ -230,7 +231,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               <div className="hidden lg:block relative group">
                 <div className="rounded-xl overflow-hidden border border-[#43766C]/30">
                   <Image
-                    src={project.image}
+                    src={getImagePath(project.image)}
                     alt={project.title}
                     width={1400}
                     height={900}

@@ -10,6 +10,7 @@ import { FadeIn, StaggerContainer, staggerItem } from "@/components/animations";
 import { TiltCard } from "@/components/tilt-card";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { getImagePath } from "@/lib/utils-image";
 
 type Tab = "projects" | "techstack" | "certificates";
 
@@ -188,7 +189,7 @@ export function Portfolio() {
 
                       {/* Image */}
                       <Image
-                        src={project.image || "/placeholder.svg"}
+                        src={getImagePath(project.image || "/placeholder.svg")}
                         alt={project.title}
                         fill
                         sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"

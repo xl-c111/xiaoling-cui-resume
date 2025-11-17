@@ -8,6 +8,7 @@ import { FadeIn } from "@/components/animations";
 import { GradientText } from "@/components/gradient-text";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { getImagePath } from "@/lib/utils-image";
 
 export function Hero() {
   return (
@@ -126,7 +127,7 @@ export function Hero() {
               <div className="absolute inset-0 bg-gradient-to-br from-[#43766C]/10 via-transparent to-[#B19470]/10 z-10" />
 
               <Image
-                src="/hero.jpg"
+                src={getImagePath("/hero.jpg")}
                 alt="Xiaoling Cui - Full Stack Developer"
                 width={1600}
                 height={900}
