@@ -16,14 +16,14 @@ export function Hero() {
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left Content */}
         <div>
-          <FadeIn delay={0.2} direction="down">
+          <FadeIn delay={0.45} duration={0.3} direction="down">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#F8FAE5]/30 bg-[#F8FAE5]/10 mb-6">
               <div className="w-2 h-2 rounded-full bg-[#F8FAE5] animate-pulse" />
               <span className="text-base text-[#F8FAE5]">Ready to Innovate</span>
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.3}>
+          <FadeIn delay={0.4} duration={0.3}>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
               <span className="text-[#F8FAE5]">Full Stack</span>
               <br />
@@ -31,26 +31,26 @@ export function Hero() {
             </h1>
           </FadeIn>
 
-          <FadeIn delay={0.4}>
+          <FadeIn delay={0.35} duration={0.3}>
             <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#F8FAE5]/80 mb-4 font-mono">
               Software Engineering<span className="text-[#B19470]"></span>
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.5}>
+          <FadeIn delay={0.3} duration={0.3}>
             <p className="text-base sm:text-lg md:text-xl text-[#F8FAE5]/90 mb-8 leading-relaxed max-w-xl">
               Building innovative solutions that transform complex challenges into elegant, user-focused experiences.
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.6}>
+          <FadeIn delay={0.2} duration={0.3}>
             <div className="flex flex-wrap gap-3 mb-8">
               {["Python", "JavaScript", "React", "SQL", "AWS", "CI/CD"].map((skill, index) => (
                 <motion.div
                   key={skill}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.7 + index * 0.1, duration: 0.3 }}
+                  transition={{ delay: 0.25 + index * 0.05, duration: 0.2 }}
                 >
                   <Badge variant="outline" className="px-4 py-2 text-base border-[#F8FAE5]/30 text-[#F8FAE5] hover:bg-[#F8FAE5]/10 transition-all hover:scale-105">
                     {skill}
@@ -60,7 +60,7 @@ export function Hero() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0} duration={0.3}>
+          <FadeIn delay={0.15} duration={0.25}>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10">
               <Button size="lg" className="bg-[#B19470] hover:bg-[#9A7F5E] text-[#F8FAE5] hover:scale-105 transition-transform w-full sm:w-auto" asChild>
                 <Link href="/portfolio">
@@ -85,7 +85,7 @@ export function Hero() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0} duration={0.3}>
+          <FadeIn delay={0.1} duration={0.25}>
             <div className="flex gap-4">
               {[
                 { icon: Github, href: "https://github.com/xl-c111" },
@@ -112,7 +112,7 @@ export function Hero() {
           </FadeIn>
         </div>
 
-        <FadeIn delay={0.4} direction="right" className="hidden md:flex items-center justify-center">
+        <FadeIn delay={0.35} duration={0.3} direction="right" className="hidden md:flex items-center justify-center">
           <motion.div
             className="relative w-full max-w-lg group"
             whileHover={{ scale: 1.02 }}

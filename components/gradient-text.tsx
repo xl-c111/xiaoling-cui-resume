@@ -19,7 +19,7 @@ export function GradientText({ children, className = '' }: GradientTextProps) {
         backgroundPosition: ['0% center', '200% center', '0% center']
       }}
       transition={{
-        duration: 5,
+        duration: 8,
         repeat: Infinity,
         ease: 'linear'
       }}
