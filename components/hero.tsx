@@ -60,7 +60,7 @@ export function Hero() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.2}>
+          <FadeIn delay={0} duration={0.3}>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10">
               <Button size="lg" className="bg-[#B19470] hover:bg-[#9A7F5E] text-[#F8FAE5] hover:scale-105 transition-transform w-full sm:w-auto" asChild>
                 <Link href="/portfolio">
@@ -85,7 +85,7 @@ export function Hero() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.25}>
+          <FadeIn delay={0} duration={0.3}>
             <div className="flex gap-4">
               {[
                 { icon: Github, href: "https://github.com/xl-c111" },
