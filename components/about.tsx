@@ -6,7 +6,7 @@ import { FadeIn } from "@/components/animations";
 
 export function About() {
   return (
-    <section id="about" className="flex items-center justify-center px-6 sm:px-6 lg:px-8 py-16 sm:py-20 pt-24 sm:pt-28">
+    <section id="about" className="flex items-center justify-center px-6 sm:px-6 lg:px-8 py-16 sm:py-20">
       <div className="max-w-4xl mx-auto w-full">
         <FadeIn>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-6">
@@ -37,7 +37,7 @@ export function About() {
               <button onClick={() => {
                 const element = document.getElementById('portfolio');
                 if (element) {
-                  const offset = 100;
+                  const offset = 60;
                   const elementPosition = element.getBoundingClientRect().top;
                   const offsetPosition = elementPosition + window.scrollY - offset;
                   window.scrollTo({ top: offsetPosition, behavior: "smooth" });

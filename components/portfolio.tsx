@@ -182,6 +182,7 @@ export function Portfolio() {
                   >
                     <Link
                       href={`/project/${project.slug}`}
+                      prefetch={false}
                       className="relative aspect-video overflow-hidden bg-gradient-to-br from-[#43766C]/20 to-[#B19470]/20 block"
                     >
                       {/* Gradient overlay for better text contrast */}
@@ -194,7 +195,6 @@ export function Portfolio() {
                         fill
                         sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        priority={index === 0}
                       />
 
                       {/* Colored accent bar */}
@@ -241,7 +241,7 @@ export function Portfolio() {
                       className="w-full sm:flex-1 border-[#43766C]/40 text-[#43766C] hover:bg-[#43766C]/10 hover:text-[#43766C]"
                       asChild
                     >
-                      <Link href={`/project/${project.slug}`}>
+                      <Link href={`/project/${project.slug}`} prefetch={false}>
                         <ArrowRight className="mr-2 h-3 w-3" />
                         <span className="text-xs sm:text-sm">Details</span>
                       </Link>

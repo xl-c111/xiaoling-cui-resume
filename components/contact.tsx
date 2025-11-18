@@ -34,7 +34,7 @@ const connectOptions = [
 
 export function Contact() {
   return (
-    <section id="contact" className="flex items-center justify-center px-2 sm:px-2 lg:px-2 py-4 sm:py-5 bg-[#76453B]">
+    <section id="contact" className="flex items-center justify-center px-2 sm:px-2 lg:px-2 pt-4 pb-4 sm:pt-6 sm:pb-5 bg-[#76453B]">
       <div className="max-w-3xl mx-auto w-full">
         <FadeIn>
           <div className="text-center mb-10">

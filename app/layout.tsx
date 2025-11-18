@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
-import { ScrollProgress } from '@/components/scroll-progress'
-import { ParticleBackground } from '@/components/particle-background'
+import { ClientEffects } from '@/components/client-effects'
 import { Navigation } from '@/components/navigation'
 import './globals.css'
 
@@ -46,12 +45,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans antialiased`} suppressHydrationWarning>
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <Navigation />
-        <ParticleBackground />
-        <ScrollProgress />
-        {children}
-        <Analytics />
+        <ClientEffects />
+        <div className="content-perspective">
+          {children}
+          <Analytics />
+        </div>
       </body>
     </html>
   )

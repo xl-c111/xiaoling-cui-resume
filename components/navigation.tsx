@@ -29,6 +29,27 @@ export const Navigation = memo(function Navigation() {
     sectionPositionsRef.current = positions;
   }, []);
 
+  const scrollWithinPage = useCallback((sectionId: string) => {
+    if (typeof window === "undefined") return false;
+
+    if (sectionId === "hero") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.history.replaceState(null, "", "/");
+      return true;
+    }
+
+    const element = document.getElementById(sectionId);
+    if (!element) return false;
+
+    const offset = 60;
+    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    const targetPosition = Math.max(elementPosition - offset, 0);
+
+    window.scrollTo({ top: targetPosition, behavior: "smooth" });
+    window.history.replaceState(null, "", `/#${sectionId}`);
+    return true;
+  }, []);
+
   // Track active section based on scroll position or pathname
   useEffect(() => {
     // Map pathname to section ID
@@ -92,23 +113,34 @@ export const Navigation = memo(function Navigation() {
     };
   }, [pathname, cacheSectionPositions]);
 
-  const scrollToSection = useCallback((sectionId: string) => {
-    // Map section IDs to routes - always navigate to individual pages
-    const routeMap: { [key: string]: string } = {
-      hero: "/",
-      about: "/about",
-      portfolio: "/portfolio",
-      experience: "/experience",
-      education: "/education",
-      additional: "/additional",
-      contact: "/contact",
-    };
+  const scrollToSection = useCallback(
+    (sectionId: string) => {
+      const routeMap: { [key: string]: string } = {
+        hero: "/",
+        about: "/about",
+        portfolio: "/portfolio",
+        experience: "/experience",
+        education: "/education",
+        additional: "/additional",
+        contact: "/contact",
+      };
 
-    // Always navigate to the individual page route
-    const route = routeMap[sectionId] || "/";
-    router.push(route);
-    setIsMobileMenuOpen(false);
-  }, [router]);
+      const onHomePage = pathname === "/";
+
+      if (onHomePage) {
+        const handled = scrollWithinPage(sectionId);
+        if (handled) {
+          setIsMobileMenuOpen(false);
+          return;
+        }
+      }
+
+      const route = routeMap[sectionId] || "/";
+      router.push(route);
+      setIsMobileMenuOpen(false);
+    },
+    [pathname, router, scrollWithinPage]
+  );
 
   // Handle hash navigation when landing on page with hash
   useEffect(() => {
@@ -117,7 +149,7 @@ export const Navigation = memo(function Navigation() {
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
-          const offset = 100;
+          const offset = 60;
           const elementPosition = element.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.scrollY - offset;
           window.scrollTo({

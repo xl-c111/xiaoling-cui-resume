@@ -12,7 +12,7 @@ import { getImagePath } from "@/lib/utils-image";
 
 export function Hero() {
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center px-6 sm:px-6 lg:px-8 pt-20 pb-12 bg-[#43766C]">
+    <section id="hero" className="min-h-screen flex items-center justify-center px-6 sm:px-6 lg:px-8 pt-10 pb-12 bg-[#43766C]">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left Content */}
         <div>
