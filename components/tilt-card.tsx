@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { ReactNode, useRef } from 'react'
+import { ReactNode, useRef, useEffect, useState } from 'react'
 
 interface TiltCardProps {
   children: ReactNode
@@ -10,6 +10,17 @@ interface TiltCardProps {
 
 export function TiltCard({ children, className = '' }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null)
+  const [shouldAnimate, setShouldAnimate] = useState(true)
+
+  useEffect(() => {
+    // Check for reduced motion preference or touch device
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+
+    if (prefersReducedMotion || isTouchDevice) {
+      setShouldAnimate(false)
+    }
+  }, [])
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -21,7 +32,7 @@ export function TiltCard({ children, className = '' }: TiltCardProps) {
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-7.5deg', '7.5deg'])
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return
+    if (!shouldAnimate || !ref.current) return
 
     const rect = ref.current.getBoundingClientRect()
     const width = rect.width
@@ -36,8 +47,18 @@ export function TiltCard({ children, className = '' }: TiltCardProps) {
   }
 
   const handleMouseLeave = () => {
+    if (!shouldAnimate) return
     x.set(0)
     y.set(0)
+  }
+
+  // Return simple div if animations are disabled
+  if (!shouldAnimate) {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    )
   }
 
   return (

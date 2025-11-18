@@ -1,12 +1,19 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 
 export function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [shouldAnimate, setShouldAnimate] = useState(true)
 
   useEffect(() => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) {
+      setShouldAnimate(false)
+      return
+    }
+
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -19,9 +26,21 @@ export function ParticleBackground() {
       canvas.height = window.innerHeight
     }
     resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
 
-    // Particle configuration
+    // Throttled resize handler
+    let resizeTimeout: NodeJS.Timeout
+    const handleResize = () => {
+      clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(resizeCanvas, 150)
+    }
+    window.addEventListener('resize', handleResize)
+
+    // Particle configuration - reduce count on mobile for better performance
+    const isMobile = window.innerWidth < 768
+    const particleCount = isMobile ? 20 : 35  // Reduced from 50 to improve performance
+    const maxDistance = 150
+    const maxDistanceSquared = maxDistance * maxDistance  // Avoid sqrt when possible
+
     const particles: Array<{
       x: number
       y: number
@@ -30,9 +49,6 @@ export function ParticleBackground() {
       size: number
       opacity: number
     }> = []
-
-    const particleCount = 50
-    const maxDistance = 150
 
     // Create particles
     for (let i = 0; i < particleCount; i++) {
@@ -69,13 +85,15 @@ export function ParticleBackground() {
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
         ctx.fill()
 
-        // Draw connections
+        // Draw connections - optimized with squared distance check
         particles.slice(i + 1).forEach(otherParticle => {
           const dx = particle.x - otherParticle.x
           const dy = particle.y - otherParticle.y
-          const distance = Math.sqrt(dx * dx + dy * dy)
+          const distanceSquared = dx * dx + dy * dy
 
-          if (distance < maxDistance) {
+          // Check squared distance first to avoid expensive sqrt
+          if (distanceSquared < maxDistanceSquared) {
+            const distance = Math.sqrt(distanceSquared)
             const opacity = (1 - distance / maxDistance) * 0.2
             ctx.strokeStyle = `rgba(67, 118, 108, ${opacity})`
             ctx.lineWidth = 0.5
@@ -93,10 +111,16 @@ export function ParticleBackground() {
     animate()
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas)
+      window.removeEventListener('resize', handleResize)
+      clearTimeout(resizeTimeout)
       cancelAnimationFrame(animationId)
     }
   }, [])
+
+  // Don't render if user prefers reduced motion
+  if (!shouldAnimate) {
+    return null
+  }
 
   return (
     <canvas

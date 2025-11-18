@@ -242,74 +242,41 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               </div>
 
               {/* Key Features */}
-              <Card className="relative overflow-hidden bg-gradient-to-br from-[#e8f3f0]/90 via-card/90 to-[#c5dcd5]/40 backdrop-blur-sm border-2 border-[#2d4f47]/30 shadow-xl">
-                {/* Decorative gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#2d4f47]/15 via-[#7fa99a]/10 to-[#2d4f47]/12 opacity-60" />
-
-                {/* Decorative corner accent */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#2d4f47]/25 to-transparent rounded-bl-full" />
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#365a52]/20 to-transparent rounded-tr-full" />
-
-                <CardContent className="relative pt-8 pb-8 px-6 sm:px-8">
-                  {/* Header with gradient background */}
-                  <div className="relative mb-8 pb-4 border-b-2 border-[#2d4f47]/30">
+              <Card className="bg-[#43766C] border border-[#F8FAE5]/20 shadow-xl">
+                <CardContent className="pt-8 pb-8 px-6 sm:px-8">
+                  {/* Header */}
+                  <div className="mb-6 pb-4 border-b border-[#F8FAE5]/20">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#2d4f47] to-[#365a52] flex items-center justify-center shadow-lg">
-                        <Star className="h-6 w-6 text-[#e8f3f0] fill-[#e8f3f0]" />
+                      <div className="w-10 h-10 rounded-lg bg-[#F8FAE5]/10 flex items-center justify-center">
+                        <Star className="h-5 w-5 text-[#F8FAE5]" />
                       </div>
-                      <h2 className="text-3xl font-bold bg-gradient-to-r from-[#2d4f47] via-[#43766C] to-[#2d4f47] bg-clip-text text-transparent">
+                      <h2 className="text-2xl font-bold text-[#F8FAE5]">
                         Key Features
                       </h2>
                     </div>
                   </div>
 
-                  {/* Features list with enhanced styling */}
-                  <div className="space-y-5">
+                  {/* Features list */}
+                  <div className="space-y-3">
                     {project.features.map((feature, index) => {
-                      const isEven = index % 2 === 0;
                       return (
                         <div
                           key={index}
-                          className={`group relative flex items-start gap-4 p-4 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-md border ${
-                            isEven
-                              ? 'bg-gradient-to-r from-[#2d4f47]/12 to-[#c5dcd5]/20 hover:from-[#2d4f47]/20 hover:to-[#c5dcd5]/30 border-[#2d4f47]/20 hover:border-[#2d4f47]/40'
-                              : 'bg-gradient-to-r from-[#7fa99a]/15 to-[#e8f3f0]/20 hover:from-[#7fa99a]/25 hover:to-[#e8f3f0]/30 border-[#7fa99a]/20 hover:border-[#7fa99a]/40'
-                          }`}
+                          className="flex items-start gap-3 p-4 rounded-lg bg-[#F8FAE5]/10 border border-[#F8FAE5]/20 hover:bg-[#F8FAE5]/15 transition-all"
                         >
-                          {/* Animated bullet point */}
-                          <div className="relative mt-1 shrink-0">
-                            <div className={`w-3 h-3 rounded-full shadow-sm group-hover:shadow-lg group-hover:scale-125 transition-all duration-300 ${
-                              isEven
-                                ? 'bg-gradient-to-br from-[#2d4f47] to-[#43766C]'
-                                : 'bg-gradient-to-br from-[#43766C] to-[#7fa99a]'
-                            }`} />
-                            <div className={`absolute inset-0 w-3 h-3 rounded-full animate-ping group-hover:opacity-75 ${
-                              isEven ? 'bg-[#2d4f47]/30' : 'bg-[#7fa99a]/30'
-                            }`} />
+                          {/* Simple bullet point */}
+                          <div className="mt-1.5 shrink-0">
+                            <div className="w-2.5 h-2.5 rounded-full bg-[#B19470]" />
                           </div>
 
-                          {/* Feature text with gradient on hover */}
-                          <p className={`text-base leading-relaxed text-foreground transition-colors duration-300 font-medium ${
-                            isEven ? 'group-hover:text-[#2d4f47]' : 'group-hover:text-[#43766C]'
-                          }`}>
+                          {/* Feature text */}
+                          <p className="text-sm leading-relaxed text-[#F8FAE5] font-medium">
                             {feature}
                           </p>
-
-                          {/* Hover indicator */}
-                          <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div className={`w-1.5 h-8 rounded-full ${
-                              isEven
-                                ? 'bg-gradient-to-b from-[#2d4f47] to-[#43766C]'
-                                : 'bg-gradient-to-b from-[#43766C] to-[#7fa99a]'
-                            }`} />
-                          </div>
                         </div>
                       );
                     })}
                   </div>
-
-                  {/* Bottom decorative line */}
-                  <div className="mt-6 h-1 w-full rounded-full bg-gradient-to-r from-[#2d4f47]/40 via-[#43766C]/40 to-[#2d4f47]/40" />
                 </CardContent>
               </Card>
             </div>

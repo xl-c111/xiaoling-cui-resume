@@ -1,15 +1,33 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback, memo } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, Menu, X } from "lucide-react";
 
-export function Navigation() {
+export const Navigation = memo(function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const router = useRouter();
   const pathname = usePathname();
+  const ticking = useRef(false);
+  const sectionPositionsRef = useRef<Map<string, { top: number; bottom: number }>>(new Map());
+
+  // Cache section positions to avoid repeated DOM queries
+  const cacheSectionPositions = useCallback(() => {
+    const sections = ["hero", "about", "portfolio", "experience", "education", "additional", "contact"];
+    const positions = new Map<string, { top: number; bottom: number }>();
+
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const { offsetTop, offsetHeight } = element;
+        positions.set(sectionId, { top: offsetTop, bottom: offsetTop + offsetHeight });
+      }
+    });
+
+    sectionPositionsRef.current = positions;
+  }, []);
 
   // Track active section based on scroll position or pathname
   useEffect(() => {
@@ -31,29 +49,50 @@ export function Navigation() {
       return;
     }
 
-    // If on home page, track active section based on scroll position
-    const handleScroll = () => {
-      const sections = ["hero", "about", "portfolio", "experience", "education", "additional", "contact"];
-      const scrollPosition = window.scrollY + 100;
+    // Cache positions initially and on resize
+    cacheSectionPositions();
 
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(sectionId);
-            break;
-          }
+    // Recache positions when window resizes (throttled)
+    let resizeTimeout: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(cacheSectionPositions, 150);
+    };
+    window.addEventListener("resize", handleResize);
+
+    // Throttled scroll handler using requestAnimationFrame
+    const updateActiveSection = () => {
+      const scrollPosition = window.scrollY + 100;
+      const positions = sectionPositionsRef.current;
+
+      for (const [sectionId, { top, bottom }] of positions) {
+        if (scrollPosition >= top && scrollPosition < bottom) {
+          setActiveSection(sectionId);
+          break;
         }
+      }
+
+      ticking.current = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking.current) {
+        requestAnimationFrame(updateActiveSection);
+        ticking.current = true;
       }
     };
 
-    handleScroll(); // Initial check
+    updateActiveSection(); // Initial check
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
 
-  const scrollToSection = (sectionId: string) => {
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(resizeTimeout);
+    };
+  }, [pathname, cacheSectionPositions]);
+
+  const scrollToSection = useCallback((sectionId: string) => {
     // Map section IDs to routes - always navigate to individual pages
     const routeMap: { [key: string]: string } = {
       hero: "/",
@@ -69,7 +108,7 @@ export function Navigation() {
     const route = routeMap[sectionId] || "/";
     router.push(route);
     setIsMobileMenuOpen(false);
-  };
+  }, [router]);
 
   // Handle hash navigation when landing on page with hash
   useEffect(() => {
@@ -193,4 +232,4 @@ export function Navigation() {
       </div>
     </nav>
   );
-}
+});
