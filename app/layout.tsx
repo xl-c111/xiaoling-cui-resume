@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import { ClientEffects } from '@/components/client-effects'
 import { Navigation } from '@/components/navigation'
+import { Toaster } from 'sonner'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -48,6 +49,19 @@ export default function RootLayout({
       <body className="font-sans antialiased" suppressHydrationWarning>
         <Navigation />
         <ClientEffects />
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              borderRadius: '1.5rem',
+              overflow: 'hidden',
+              padding: 0,
+              background: 'transparent',
+              border: 'none',
+              boxShadow: 'none',
+            },
+          }}
+        />
         <div className="content-perspective">
           {children}
           <Analytics />

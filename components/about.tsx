@@ -27,13 +27,13 @@ export function About() {
 
         <FadeIn delay={0.3}>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <Button size="lg" className="bg-[#43766C] hover:bg-[#386657] text-white hover:scale-105 transition-transform w-full sm:w-auto" asChild>
+            <Button size="lg" className="bg-[#43766C] hover:bg-[#386657] text-white hover:scale-105 transition-all duration-200 will-change-transform w-full sm:w-auto" asChild>
               <a href="/cv.pdf" download>
                 <FileText className="mr-2 h-4 w-4" />
                 Download CV
               </a>
             </Button>
-            <Button size="lg" className="bg-[#43766C] hover:bg-[#386657] text-white hover:scale-105 transition-transform w-full sm:w-auto" asChild>
+            <Button size="lg" className="bg-[#43766C] hover:bg-[#386657] text-white hover:scale-105 transition-all duration-200 will-change-transform w-full sm:w-auto" asChild>
               <button onClick={() => {
                 const element = document.getElementById('portfolio');
                 if (element) {

@@ -15,19 +15,19 @@ interface FadeInProps {
 export function FadeIn({
   children,
   delay = 0,
-  duration = 0.5,
+  duration = 0.3,
   direction = 'up',
   className = '',
   once = true
 }: FadeInProps) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once, margin: '-100px' })
+  const isInView = useInView(ref, { once, margin: '-80px' })
 
   const directions = {
-    up: { y: 40, x: 0 },
-    down: { y: -40, x: 0 },
-    left: { y: 0, x: 40 },
-    right: { y: 0, x: -40 },
+    up: { y: 30, x: 0 },
+    down: { y: -30, x: 0 },
+    left: { y: 0, x: 30 },
+    right: { y: 0, x: -30 },
     none: { y: 0, x: 0 }
   }
 
@@ -52,6 +52,7 @@ export function FadeIn({
         ease: [0.21, 0.47, 0.32, 0.98] as const
       }}
       className={className}
+      style={{ willChange: isInView ? 'auto' : 'opacity, transform' }}
     >
       {children}
     </motion.div>
@@ -99,7 +100,7 @@ export const staggerItem = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.3,
       ease: [0.21, 0.47, 0.32, 0.98] as const
     }
   }
@@ -115,8 +116,9 @@ export function ScaleOnHover({ children, scale = 1.02, className = '' }: ScaleOn
   return (
     <motion.div
       whileHover={{ scale }}
-      transition={{ duration: 0.2, ease: 'easeInOut' }}
+      transition={{ duration: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
       className={className}
+      style={{ willChange: 'transform' }}
     >
       {children}
     </motion.div>

@@ -65,11 +65,16 @@
     box-sizing: border-box;
   }
   html {
-    scroll-behavior: smooth;
     font-size: 18px;
     cursor: auto;
     overflow-x: hidden;
     max-width: 100vw;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
   body {
     @apply bg-background text-foreground;
@@ -112,5 +117,39 @@
 
   .content-perspective {
     perspective: 1000px;
+  }
+
+  /* Performance optimizations */
+  .smooth-transform {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Optimize image rendering */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* GPU acceleration for animations */
+  .animate-scale,
+  .hover\:scale-105:hover,
+  .hover\:scale-110:hover,
+  [class*="hover:scale-"]:hover {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Smooth opacity transitions */
+  .transition-opacity,
+  .transition-all {
+    will-change: opacity, transform;
+  }
+
+  /* Optimize scrolling */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }

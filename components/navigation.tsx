@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback, memo } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, Menu, X } from "lucide-react";
+import { toast } from "sonner";
 
 export const Navigation = memo(function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -217,10 +218,53 @@ export const Navigation = memo(function Navigation() {
                 <Linkedin className="h-5 w-5" />
               </a>
             </Button>
-            <Button variant="ghost" size="icon" className="text-[#7fa99a] hover:text-[#F8FAE5] hover:bg-[#2d4f47]/50" asChild>
-              <a href="mailto:xiaolingcui0111@gmail.com">
-                <Mail className="h-5 w-5" />
-              </a>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-[#7fa99a] hover:text-[#F8FAE5] hover:bg-[#2d4f47]/50"
+              onClick={(e) => {
+                e.preventDefault();
+
+                const emailAddress = 'xiaolingcui0111@gmail.com';
+
+                // Dismiss any existing toasts before showing new one
+                toast.dismiss();
+
+                toast.custom(() => (
+                  <div className="flex items-center gap-4 bg-[#F8FAE5] border-2 border-[#43766C] rounded-3xl p-4 shadow-lg min-w-[320px]">
+                    <div className="text-4xl">📧</div>
+                    <div className="flex-1">
+                      <div className="text-[#76453B] font-bold text-lg mb-1">Contact Me</div>
+                      <div className="text-[#43766C] font-semibold text-base mb-2">{emailAddress}</div>
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(emailAddress);
+                          toast.dismiss();
+                          toast('✓ Email copied to clipboard!', {
+                            duration: 2000,
+                            style: {
+                              background: '#F8FAE5',
+                              color: '#43766C',
+                              border: '2px solid #43766C',
+                              borderRadius: '1.5rem',
+                              padding: '16px',
+                              fontSize: '16px',
+                              fontWeight: '600',
+                            },
+                          });
+                        }}
+                        className="bg-[#43766C] hover:bg-[#386657] text-[#F8FAE5] px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200"
+                      >
+                        Copy Email
+                      </button>
+                    </div>
+                  </div>
+                ), {
+                  duration: 5000,
+                });
+              }}
+            >
+              <Mail className="h-5 w-5" />
             </Button>
           </div>
 

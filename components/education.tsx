@@ -70,7 +70,7 @@ export function Education() {
 
             return (
               <motion.div key={index} variants={staggerItem}>
-                <Card className="gradient-border bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 relative">
+                <Card className="gradient-border bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-200 relative will-change-transform">
                   <CardContent className="pt-6 pb-6">
                     <div className="flex gap-6">
                       {/* Timeline dot with icon */}
@@ -107,7 +107,7 @@ export function Education() {
                                 <Badge
                                   key={sIndex}
                                   variant="outline"
-                                  className="px-3 py-1 text-xs font-medium border-[#43766C]/30 bg-[#43766C]/5 hover:bg-[#43766C]/10 transition-colors"
+                                  className="px-3 py-1 text-xs font-medium border-[#43766C]/30 bg-[#43766C]/5 hover:bg-[#43766C]/10 transition-colors duration-200"
                                 >
                                   {skill}
                                 </Badge>

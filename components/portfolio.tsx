@@ -20,7 +20,7 @@ const projects = [
     title: "HBnB - Luxe Airbnb Clone",
     description:
       "Full-stack Airbnb clone featuring instant booking, payment processing, and comprehensive host analytics.",
-    image: "/hbnb.jpg",
+    image: "/hbnb.png",
     tags: ["React", "Flask", "Tailwind CSS", "MySQL", "AWS", "Stripe"],
     liveDemo: "https://d2gfqpg21nkiyl.cloudfront.net/",
     github: "https://github.com/xl-c111/holbertonschool-hbnb",
@@ -47,8 +47,11 @@ const projects = [
 
 const certificates = [
   {
-    title: "Certificates coming soon",
-    issuer: "",
+    title: "Foundations of Software Engineering",
+    issuer: "Holberton Australia",
+    date: "November 2025",
+    image: "/certificate.png",
+    description: "Intensive training in programming, algorithms, and real-world project development.",
   },
 ];
 
@@ -138,7 +141,7 @@ export function Portfolio() {
             <div className="inline-flex rounded-2xl p-1 bg-card/50 backdrop-blur-sm border border-border gap-0.5 sm:gap-1">
             <button
               onClick={() => setActiveTab("projects")}
-              className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-6 md:px-8 py-2 sm:py-4 rounded-xl transition-all ${
+              className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-6 md:px-8 py-2 sm:py-4 rounded-xl transition-all duration-200 ${
                 activeTab === "projects"
                   ? "bg-[#43766C]/20 text-foreground shadow-lg"
                   : "text-muted-foreground hover:text-foreground"
@@ -149,7 +152,7 @@ export function Portfolio() {
             </button>
             <button
               onClick={() => setActiveTab("techstack")}
-              className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-6 md:px-8 py-2 sm:py-4 rounded-xl transition-all ${
+              className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-6 md:px-8 py-2 sm:py-4 rounded-xl transition-all duration-200 ${
                 activeTab === "techstack"
                   ? "bg-[#B19470]/20 text-foreground shadow-lg"
                   : "text-muted-foreground hover:text-foreground"
@@ -160,7 +163,7 @@ export function Portfolio() {
             </button>
             <button
               onClick={() => setActiveTab("certificates")}
-              className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-6 md:px-8 py-2 sm:py-4 rounded-xl transition-all ${
+              className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-6 md:px-8 py-2 sm:py-4 rounded-xl transition-all duration-200 ${
                 activeTab === "certificates"
                   ? "bg-[#43766C]/20 text-foreground shadow-lg"
                   : "text-muted-foreground hover:text-foreground"
@@ -194,7 +197,7 @@ export function Portfolio() {
                         alt={project.title}
                         fill
                         sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300 will-change-transform"
                       />
 
                       {/* Colored accent bar */}
@@ -258,7 +261,7 @@ export function Portfolio() {
           <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4" staggerDelay={0.05}>
             {techStack.map((tech, index) => (
               <motion.div key={index} variants={staggerItem}>
-                <Card className="gradient-border bg-card/50 backdrop-blur-sm hover:glow-sage hover:scale-110 transition-all duration-300 group"
+                <Card className="gradient-border bg-card/50 backdrop-blur-sm hover:glow-sage hover:scale-105 transition-all duration-200 group will-change-transform"
                 >
                 <CardContent className="pt-5 pb-5 flex flex-col items-center justify-center gap-3">
                   <div
@@ -273,19 +276,36 @@ export function Portfolio() {
           </StaggerContainer>
         )}
         {activeTab === "certificates" && (
-          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certificates.map((cert, index) => (
               <motion.div key={index} variants={staggerItem}>
-                <Card className="gradient-border bg-card/50 backdrop-blur-sm overflow-hidden hover:glow-sage hover:scale-105 transition-all duration-300 flex items-center justify-center"
-                >
-                <CardContent className="py-10 flex flex-col items-center justify-center text-center">
-                  <Award className="h-10 w-10 text-[#43766C] mb-4" />
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{cert.title}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    I&apos;m actively working toward industry certifications. Check back soon!
-                  </p>
-                </CardContent>
-              </Card>
+                <TiltCard className="h-full">
+                  <Card className="gradient-border bg-card/50 backdrop-blur-sm overflow-hidden group hover:glow-sage transition-all duration-300 h-full"
+                  >
+                    <div className="relative aspect-4/3 overflow-hidden bg-gradient-to-br from-[#43766C]/20 to-[#B19470]/20">
+                      {/* Certificate Image */}
+                      <Image
+                        src={getImagePath(cert.image || "/placeholder.svg")}
+                        alt={`${cert.title} Certificate`}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        className="object-contain bg-white p-4 group-hover:scale-105 transition-transform duration-300 will-change-transform"
+                      />
+
+                      {/* Colored accent bar */}
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#43766C] via-[#B19470] to-[#43766C] z-20" />
+                    </div>
+                    <CardContent className="pt-6 px-4 sm:px-6">
+                      <h3 className="text-xl sm:text-2xl font-bold mb-2 text-foreground">{cert.title}</h3>
+                      <div className="flex items-center gap-2 mb-3">
+                        <Award className="h-4 w-4 text-[#43766C]" />
+                        <p className="text-sm sm:text-base font-semibold text-[#43766C]">{cert.issuer}</p>
+                      </div>
+                      <p className="text-xs sm:text-sm text-muted-foreground mb-4">{cert.date}</p>
+                      <p className="text-sm sm:text-base text-muted-foreground">{cert.description}</p>
+                    </CardContent>
+                  </Card>
+                </TiltCard>
               </motion.div>
             ))}
           </StaggerContainer>
