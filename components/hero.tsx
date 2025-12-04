@@ -47,14 +47,14 @@ export function Hero() {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.3} duration={0.25}>
+          <FadeIn delay={0.2} duration={0.2}>
             <div className="flex flex-wrap gap-3 mb-8">
               {["Python", "JavaScript", "React", "SQL", "AWS", "CI/CD"].map((skill, index) => (
                 <motion.div
                   key={skill}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.35 + index * 0.03, duration: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  transition={{ delay: 0.25 + index * 0.02, duration: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
                 >
                   <Badge
                     variant="outline"
@@ -67,7 +67,7 @@ export function Hero() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.45} duration={0.2}>
+          <FadeIn delay={0.3} duration={0.2}>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10">
               <Button
                 size="lg"
@@ -102,7 +102,7 @@ export function Hero() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.55} duration={0.2}>
+          <FadeIn delay={0.35} duration={0.2}>
             <div className="flex gap-4">
               {[
                 { icon: Github, href: "https://github.com/xl-c111" },
@@ -227,7 +227,7 @@ export function Hero() {
               <div className="absolute inset-0 bg-gradient-to-br from-[#43766C]/10 via-transparent to-[#B19470]/10 z-10" />
 
               <Image
-                src={getImagePath("/hero.jpg")}
+                src={getImagePath("/hero.webp")}
                 alt="Xiaoling Cui - Full Stack Developer"
                 width={1600}
                 height={900}
