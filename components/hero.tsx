@@ -67,8 +67,7 @@ export function Hero() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.3} duration={0.2}>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10">
               <Button
                 size="lg"
                 className="bg-[#B19470] hover:bg-[#9A7F5E] text-[#F8FAE5] hover:scale-105 transition-all duration-200 will-change-transform w-full sm:w-auto"
@@ -100,10 +99,8 @@ export function Hero() {
                 </button>
               </Button>
             </div>
-          </FadeIn>
 
-          <FadeIn delay={0.35} duration={0.2}>
-            <div className="flex gap-4">
+          <div className="flex gap-4">
               {[
                 { icon: Github, href: "https://github.com/xl-c111" },
                 { icon: Linkedin, href: "https://www.linkedin.com/in/xiaolingcui/" },
@@ -209,7 +206,6 @@ export function Hero() {
                 );
               })}
             </div>
-          </FadeIn>
         </div>
 
         <FadeIn delay={0.2} duration={0.25} direction="right" className="hidden md:flex items-center justify-center">

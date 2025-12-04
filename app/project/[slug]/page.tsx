@@ -15,7 +15,7 @@ const projects = {
       "Flask-based post-surgery care assistant powered by the Heidi AI REST API for audio transcription and AI-driven care planning.",
     longDescription:
       "A production-ready post-surgery care assistant built with Flask and vanilla JavaScript. Features secure file uploads, audio transcription via Heidi AI API, SSE-driven streaming responses, and automated pytest suites. Delivers a clinician-focused UI with drag-and-drop functionality and real-time AI updates.",
-    image: "/healthcare.png",
+    image: "/healthcare.webp",
     technologies: ["Flask", "Python", "JavaScript", "HTML/CSS", "Heidi AI API", "pytest", "Docker"],
     github: "https://github.com/xl-c111/heidi_AI_integration_project",
     demo: "https://github.com/xl-c111/heidi_AI_integration_project",
@@ -39,7 +39,7 @@ const projects = {
       "Full-stack flower marketplace with React/TypeScript frontend, Express backend, and complete e-commerce functionality.",
     longDescription:
       "A production-ready flower marketplace built with React, TypeScript, and Express. Features secure checkout with Stripe, Auth0 authentication, AI-powered gift messages via Gemini AI, automated email confirmations, and full Docker containerization with CI/CD deployment.",
-    image: "/flora.jpg",
+    image: "/flora.webp",
     technologies: [
       "React",
       "TypeScript",
@@ -75,7 +75,7 @@ const projects = {
       "Full-stack Airbnb clone with payment processing, featuring secure Stripe integration, AWS deployment, and optimized database performance.",
     longDescription:
       "A production-ready Airbnb clone featuring Stripe payment integration, AWS deployment, and 70% database performance optimization. Built with Flask, React, and MySQL, this platform includes complete booking management, role-based dashboards, and RESTful APIs with 85%+ test coverage.",
-    image: "/hbnb.jpg",
+    image: "/hbnb.webp",
     technologies: ["Python", "Flask", "React", "Tailwind CSS", "MySQL", "Stripe API", "AWS"],
     github: "https://github.com/xl-c111/holbertonschool-hbnb",
     demo: "https://d2gfqpg21nkiyl.cloudfront.net/",
