@@ -9,27 +9,27 @@ import { getImagePath } from "@/lib/utils-image";
 
 // Project data with detailed information
 const projects = {
-  "heidi-ai-care-assistant": {
-    title: "Heidi AI Care Assistant",
+  "been-there": {
+    title: "been there - Peer Support Platform",
     description:
-      "Flask-based post-surgery care assistant powered by the Heidi AI REST API for audio transcription and AI-driven care planning.",
+      "Peer support platform connecting people to authentic recovery stories through AI-powered semantic matching, combating online radicalization and toxic echo chambers.",
     longDescription:
-      "A production-ready post-surgery care assistant built with Flask and vanilla JavaScript. Features secure file uploads, audio transcription via Heidi AI API, SSE-driven streaming responses, and automated pytest suites. Delivers a clinician-focused UI with drag-and-drop functionality and real-time AI updates.",
-    image: "/healthcare.webp",
-    technologies: ["Flask", "Python", "JavaScript", "HTML/CSS", "Heidi AI API", "pytest", "Docker"],
-    github: "https://github.com/xl-c111/heidi_AI_integration_project",
-    demo: "https://github.com/xl-c111/heidi_AI_integration_project",
+      "A production-ready peer support platform designed to combat online radicalization by connecting people to authentic mentor stories from those who have overcome similar challenges. Built with Next.js 16, React 19, and TypeScript, featuring AI semantic matching via sentence-transformers, conversational AI through OpenRouter (Gemini 2.0 Flash), and hybrid serverless architecture. Real human experiences, not AI therapy. Delivered in 48-hour eSafety Hackathon 'Needle in the Hashtag' sprint.",
+    image: "/beenthere.webp",
+    technologies: ["Next.js 16", "React 19", "TypeScript", "FastAPI", "Supabase", "PostgreSQL", "OpenRouter API", "Gemini 2.0 Flash", "sentence-transformers", "Tailwind CSS v4", "shadcn/ui"],
+    github: "https://github.com/xl-c111/NeedleInTheHashtag_Hackathon",
+    demo: "https://needleinthehashtaghackathon.vercel.app",
     features: [
-      "🏗️ Flask Backend Architecture - Vanilla JS/HTML/CSS frontend with secure uploads, audio transcription, and SSE-driven AI responses",
-      "🤖 Heidi AI Integration - JWT auth, sessions, SSE with retry/fallback logic for structured care plans and consult notes",
-      "🧪 Automated Testing - pytest suites with mocked Heidi endpoints covering authentication, transcription, and streaming workflows",
-      "👨‍⚕️ Clinician-Focused UI - Drag-and-drop uploads, progress indicators, and live AI updates for streamlined workflows",
-      "🔐 Secure File Handling - Encrypted uploads and secure session management",
-      "⚡ Real-time Streaming - Server-Sent Events (SSE) for live AI response updates",
-      "🐳 Docker Deployment - Containerized application for consistent deployment",
+      "🎯 Social Impact - Combat online radicalization and toxic echo chambers by providing diverse, compassionate peer perspectives and authentic recovery stories",
+      "🤖 AI Semantic Matching - sentence-transformers with cosine similarity to connect users to relevant mentor stories based on their experiences",
+      "💬 Compassionate AI Chat - OpenRouter API (Gemini 2.0 Flash) helps users articulate feelings in a stigma-free, anonymous environment",
+      "🔐 Anonymous & Secure - Supabase Auth supporting email/password and anonymous sign-in with Row-Level Security policies for privacy",
+      "⚡ Hybrid Architecture - Vercel (frontend + API routes) + Hugging Face Space (FastAPI semantic matching) + Supabase (database + auth)",
+      "📝 Private Journaling - Personal reflection space with theme-based story filtering, dark mode, and fully responsive design",
+      "🚀 Rapid Development - Production-ready application delivered in 48-hour eSafety Hackathon sprint (Nov 2025)",
     ],
     stats: {
-      technologies: 7,
+      technologies: 11,
       features: 7,
     },
   },

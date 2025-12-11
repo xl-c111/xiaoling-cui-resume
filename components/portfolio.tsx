@@ -35,13 +35,13 @@ const projects = [
     github: "https://github.com/xl-c111/Flora",
   },
   {
-    slug: "heidi-ai-care-assistant",
-    title: "Heidi AI Care Assistant",
-    description: "Post-surgery care assistant with Heidi AI integration for audio transcription and care planning.",
-    image: "/healthcare.webp",
-    tags: ["Flask", "Python", "JavaScript", "Heidi AI API", "Docker"],
-    liveDemo: "https://github.com/xl-c111/heidi_AI_integration_project",
-    github: "https://github.com/xl-c111/heidi_AI_integration_project",
+    slug: "been-there",
+    title: "been there - Peer Support Platform",
+    description: "AI-powered platform connecting people to authentic recovery stories through semantic matching, combating online radicalization with compassionate peer perspectives.",
+    image: "/beenthere.webp",
+    tags: ["Next.js 16", "Vercel", "HF Space", "Supabase", "Gemini 2.0"],
+    liveDemo: "https://needleinthehashtaghackathon.vercel.app",
+    github: "https://github.com/xl-c111/NeedleInTheHashtag_Hackathon",
   },
 ];
 

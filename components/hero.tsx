@@ -68,124 +68,97 @@ export function Hero() {
           </FadeIn>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10">
-              <Button
-                size="lg"
-                className="bg-[#B19470] hover:bg-[#9A7F5E] text-[#F8FAE5] hover:scale-105 transition-all duration-200 will-change-transform w-full sm:w-auto"
-                asChild
+            <Button
+              size="lg"
+              className="bg-[#B19470] hover:bg-[#9A7F5E] text-[#F8FAE5] hover:scale-105 transition-all duration-200 will-change-transform w-full sm:w-auto"
+              asChild
+            >
+              <Link href="/portfolio">
+                <ExternalLink className="mr-2 h-4 w-4" />
+                Projects
+              </Link>
+            </Button>
+            <Button
+              size="lg"
+              className="bg-[#B19470] hover:bg-[#9A7F5E] text-[#F8FAE5] hover:scale-105 transition-all duration-200 will-change-transform w-full sm:w-auto"
+              asChild
+            >
+              <button
+                onClick={() => {
+                  const element = document.getElementById("contact");
+                  if (element) {
+                    const offset = 100;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - offset;
+                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                  }
+                }}
               >
-                <Link href="/portfolio">
-                  <ExternalLink className="mr-2 h-4 w-4" />
-                  Projects
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                className="bg-[#B19470] hover:bg-[#9A7F5E] text-[#F8FAE5] hover:scale-105 transition-all duration-200 will-change-transform w-full sm:w-auto"
-                asChild
-              >
-                <button
-                  onClick={() => {
-                    const element = document.getElementById("contact");
-                    if (element) {
-                      const offset = 100;
-                      const elementPosition = element.getBoundingClientRect().top;
-                      const offsetPosition = elementPosition + window.scrollY - offset;
-                      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                    }
-                  }}
-                >
-                  <Mail className="mr-2 h-4 w-4" />
-                  Contact
-                </button>
-              </Button>
-            </div>
+                <Mail className="mr-2 h-4 w-4" />
+                Contact
+              </button>
+            </Button>
+          </div>
 
           <div className="flex gap-4">
-              {[
-                { icon: Github, href: "https://github.com/xl-c111" },
-                { icon: Linkedin, href: "https://www.linkedin.com/in/xiaolingcui/" },
-                { icon: Mail, href: "mailto:xiaolingcui0111@gmail.com" },
-              ].map((social, index) => {
-                const Icon = social.icon;
-                const isEmail = Icon === Mail;
+            {[
+              { icon: Github, href: "https://github.com/xl-c111" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/xiaolingcui/" },
+              { icon: Mail, href: "mailto:xiaolingcui0111@gmail.com" },
+            ].map((social, index) => {
+              const Icon = social.icon;
+              const isEmail = Icon === Mail;
 
-                if (isEmail) {
-                  return (
-                    <motion.button
-                      key={index}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        const emailAddress = "xiaolingcui0111@gmail.com";
-
-                        // Dismiss any existing toasts before showing new one
-                        toast.dismiss();
-
-                        toast.custom(
-                          () => (
-                            <div className="flex items-center gap-4 bg-[#F8FAE5] border-2 border-[#43766C] rounded-3xl p-4 shadow-lg min-w-[320px]">
-                              <div className="text-4xl">📧</div>
-                              <div className="flex-1">
-                                <div className="text-[#76453B] font-bold text-lg mb-1">Contact Me</div>
-                                <div className="text-[#43766C] font-semibold text-base mb-2">{emailAddress}</div>
-                                <button
-                                  onClick={() => {
-                                    navigator.clipboard.writeText(emailAddress);
-                                    toast.dismiss();
-                                    toast("✓ Email copied to clipboard!", {
-                                      duration: 2000,
-                                      style: {
-                                        background: '#F8FAE5',
-                                        color: '#43766C',
-                                        border: '2px solid #43766C',
-                                        borderRadius: '1.5rem',
-                                        padding: '16px',
-                                        fontSize: '16px',
-                                        fontWeight: '600',
-                                      },
-                                    });
-                                  }}
-                                  className="bg-[#43766C] hover:bg-[#386657] text-[#F8FAE5] px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200"
-                                >
-                                  Copy Email
-                                </button>
-                              </div>
-                            </div>
-                          ),
-                          {
-                            duration: 5000,
-                          }
-                        );
-                      }}
-                      className="w-12 h-12 rounded-lg bg-[#F8FAE5]/10 border border-[#F8FAE5]/30 flex items-center justify-center text-[#F8FAE5] will-change-transform cursor-pointer"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ duration: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
-                      style={{
-                        transition: "background-color 0.15s ease, border-color 0.15s ease",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = "rgba(248, 250, 229, 0.5)";
-                        e.currentTarget.style.backgroundColor = "rgba(248, 250, 229, 0.2)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = "";
-                        e.currentTarget.style.backgroundColor = "";
-                      }}
-                    >
-                      <Icon className="h-5 w-5" />
-                    </motion.button>
-                  );
-                }
-
+              if (isEmail) {
                 return (
-                  <motion.a
+                  <motion.button
                     key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-lg bg-[#F8FAE5]/10 border border-[#F8FAE5]/30 flex items-center justify-center text-[#F8FAE5] will-change-transform"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+
+                      const emailAddress = "xiaolingcui0111@gmail.com";
+
+                      // Dismiss any existing toasts before showing new one
+                      toast.dismiss();
+
+                      toast.custom(
+                        () => (
+                          <div className="flex items-center gap-4 bg-[#F8FAE5] border-2 border-[#43766C] rounded-3xl p-4 shadow-lg min-w-[320px]">
+                            <div className="text-4xl">📧</div>
+                            <div className="flex-1">
+                              <div className="text-[#76453B] font-bold text-lg mb-1">Contact Me</div>
+                              <div className="text-[#43766C] font-semibold text-base mb-2">{emailAddress}</div>
+                              <button
+                                onClick={() => {
+                                  navigator.clipboard.writeText(emailAddress);
+                                  toast.dismiss();
+                                  toast("✓ Email copied to clipboard!", {
+                                    duration: 2000,
+                                    style: {
+                                      background: "#F8FAE5",
+                                      color: "#43766C",
+                                      border: "2px solid #43766C",
+                                      borderRadius: "1.5rem",
+                                      padding: "16px",
+                                      fontSize: "16px",
+                                      fontWeight: "600",
+                                    },
+                                  });
+                                }}
+                                className="bg-[#43766C] hover:bg-[#386657] text-[#F8FAE5] px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200"
+                              >
+                                Copy Email
+                              </button>
+                            </div>
+                          </div>
+                        ),
+                        {
+                          duration: 5000,
+                        }
+                      );
+                    }}
+                    className="w-12 h-12 rounded-lg bg-[#F8FAE5]/10 border border-[#F8FAE5]/30 flex items-center justify-center text-[#F8FAE5] will-change-transform cursor-pointer"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
@@ -202,10 +175,37 @@ export function Hero() {
                     }}
                   >
                     <Icon className="h-5 w-5" />
-                  </motion.a>
+                  </motion.button>
                 );
-              })}
-            </div>
+              }
+
+              return (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-lg bg-[#F8FAE5]/10 border border-[#F8FAE5]/30 flex items-center justify-center text-[#F8FAE5] will-change-transform"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  style={{
+                    transition: "background-color 0.15s ease, border-color 0.15s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(248, 250, 229, 0.5)";
+                    e.currentTarget.style.backgroundColor = "rgba(248, 250, 229, 0.2)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "";
+                    e.currentTarget.style.backgroundColor = "";
+                  }}
+                >
+                  <Icon className="h-5 w-5" />
+                </motion.a>
+              );
+            })}
+          </div>
         </div>
 
         <FadeIn delay={0.2} duration={0.25} direction="right" className="hidden md:flex items-center justify-center">

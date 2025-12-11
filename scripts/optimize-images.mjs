@@ -8,7 +8,8 @@ const imagesToOptimize = [
   'hbnb.png',
   'healthcare.png',
   'flora.jpg',
-  'hero.jpg'
+  'hero.jpg',
+  'beenthere.png'
 ];
 
 async function optimizeImages() {
