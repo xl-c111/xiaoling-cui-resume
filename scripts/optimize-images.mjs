@@ -4,7 +4,8 @@ import { join } from 'path';
 
 const publicDir = 'public';
 const imagesToOptimize = [
-  'certificate.png',
+  'hs-certificate.png',
+  'ai-engineer-certificate.png',
   'hbnb.png',
   'healthcare.png',
   'flora.jpg',
